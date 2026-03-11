@@ -1,7 +1,4 @@
-import React from "react";
 import { useState } from "react";
-import { X } from "lucide-react";
-
 
 const App = () => {
   const [title, setTitle] = useState("");
@@ -13,7 +10,6 @@ const App = () => {
     e.preventDefault();
 
     const copyTask = [...task];
-    console.log(task);
 
     copyTask.push({ title, details });
     setTask(copyTask);
@@ -22,13 +18,11 @@ const App = () => {
     setDetails("");
   };
 
-  const deleteNote =(idx)=>{
-    
-    const copyTask  = [...task]
-    copyTask.splice(idx,1)
-    setTask(copyTask)
-  }
-
+  const deleteNote = (idx) => {
+    const copyTask = [...task];
+    copyTask.splice(idx, 1);
+    setTask(copyTask);
+  };
 
   return (
     <div className="h-screen lg:flex bg-black text-white ">
@@ -67,16 +61,25 @@ const App = () => {
           {task.map(function (elem, idx) {
             return (
               <div
-                key={idx} 
+                key={idx}
                 className="flex justify-between flex-col items-start relative h-52 w-40 bg-cover rounded-xl pt-9 pb-5 px-4 text-black  bg-[url('https://static.vecteezy.com/system/resources/previews/037/152/677/non_2x/sticky-note-paper-background-free-png.png')] "
               >
-                <h3 className="leading-tight text-lg font-bold">{elem.title}</h3>
-                <p className="mt-3 leading-tight text-sm font-medium text-gray-900">{elem.details}</p>
-                <button onClick={()=>{
-                  deleteNote(idx)
-                }} className="w-full bg-red-500 py-1 text-xs rounded font-bold text-white">Delete</button>
+                <h3 className="leading-tight text-lg font-bold">
+                  {elem.title}
+                </h3>
+                <p className="mt-3 leading-tight text-sm font-medium text-gray-900">
+                  {elem.details}
+                </p>
+                <button
+                  onClick={() => {
+                    deleteNote(idx);
+                  }}
+                  className="w-full bg-red-500 py-1 text-xs rounded font-bold text-white"
+                >
+                  Delete
+                </button>
               </div>
-            )
+            );
           })}
         </div>
       </div>
